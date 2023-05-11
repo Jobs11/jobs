@@ -1,7 +1,5 @@
 package com.example.myapplication
 
-import android.provider.ContactsContract.CommonDataKinds.Email
-
 class test {
 }
 
@@ -40,8 +38,8 @@ fun main(){
     println("obj.superData: $obj.superData")
     obj.superFun()
 
-    val none1 = NonDataClass("SEA", "1234")
-    val none2 = NonDataClass("AES", "1234")
+    val none1 = NonDataClass("SEA", "1234", "ema1")
+    val none2 = NonDataClass("AES", "1234", "ema2")
     println("none1의 주소값: $none1")
     println("none2의 주소값: $none2")
     println("equals의 주소값: ${none1.equals(none2)}")
@@ -52,15 +50,77 @@ fun main(){
     println("data14의 주소값: $data14")
     println("equals의 주소값: ${data13.equals(data14)}")
 
+    obje.data = 20
+    obje.some()
+    /*obj.data = 20
+    obj.some()*/
+    companionClassTest.data
+    companionClassTest.some()
+
+    fun some(no1:Int, no2:Int):Int {
+        return no1+no2
+    }
+
+    val result13 = {no1:Int, no2:Int -> no1+no2}
+    val x = result13(1,2)
+    println(x)
+
+    val result14 = {no1:Int -> println("no1 = $no1")}
+    val y = result14(5)
+    println(y)
+
+    val some2 = {no1:Int, no2:Int -> println("출력")
+     no1 * no2 }
+    println("익명 ${some2(1,2)}")
+
+    val result16 = testH({ no -> no > 0 })
+    println("result16?  $result16")
+
+    val data20:String? = "seeeeeeeeeee"
+    println("data20의 길이: ${data20?.length ?: 0}")
 
 }
 
-class NonDataClass(val name: String, val pw: String){
-    lateinit var email:String
-    constructor(name: String, pw: String, email: Email): this(name, pw){
+
+fun testH(arg: (Int)-> Boolean ) :() -> String {
+    val result = if(arg(10)) {
+        "valid"
+    }else {
+        "invalid"
+    }
+    return {"testH result: $result"}
+
+}
+
+class companionClassTest {
+    companion object {
+        var data = 10
+        fun some() {
+            println("data의 값은 $data")
+        }
+    }
+}
+
+open class Super2 {
+    open var data = 10
+    open fun some(){
+        println("i am Super2: $data")
+    }
+}
+
+var obje = object : Super2(){
+    override var data = 20
+    override fun some(){
+        println("i am Super2 재사용한 값: $data")
+    }
+}
+
+class NonDataClass(val name: String, val pw: String, val email: String){
+    /*lateinit var email:String
+    constructor(name: String, pw: String, email: String): this(name, pw){
         this.email
 
-    }
+    }*/
 }
 
 data class DataClass(val name: String, val pw: String){
