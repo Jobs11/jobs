@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="title">Look for people in your cell phone contacts on Messenger.</string>
+    <string name="content">By continuing to upload contacts, Facebook and Messenger will recommend connected contacts and display more relevant ads to you and others to help you better serve them.</string>
+    <string name="bt1">TRUN ON</string>
+    <string name="bt2">NOT NOW</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="mainStyle">
+        <item name="android:textSize">@dimen/basicFontSize</item>
+        <item name="android:textColor">@color/maincolor</item>
+    </style>
+    <style name="subStyle" parent="mainStyle">
+        <item name="android:background">#00F30A</item>
+    </style>
+
+</resources>

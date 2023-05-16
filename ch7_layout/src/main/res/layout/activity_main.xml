@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/firbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ptext"
+            android:textColor="@color/green"
+            android:backgroundTint="#FFFFFF"
+            android:layout_gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="02-120"
+            android:textSize="40dp"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+        <GridLayout
+            android:id="@+id/gid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:columnCount="3"
+            android:layout_gravity="center"
+            >
+
+            <Button android:text="1"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="2"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="3"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="4"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="5"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="6"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="7"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="8"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="9"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="*"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="0"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <Button android:text="#"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/black"
+                android:textSize="30dp"/>
+            <ImageView android:src="@drawable/camera"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:layout_gravity="right|center"
+                android:layout_marginTop="10dp"/>
+            <ImageView android:src="@drawable/pcalling"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+            <ImageView android:src="@drawable/delete"
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:layout_gravity="left|center"
+                android:layout_marginTop="10dp"/>
+
+
+        </GridLayout>
+
+</LinearLayout>
