@@ -13,6 +13,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/user_basic"
+        android:contentDescription="@null"
         android:layout_gravity="center"/>
     <Button
         android:id="@+id/procam"
@@ -133,27 +134,29 @@
             android:text="성별"
             android:layout_gravity="left"
             />
-        <GridLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
+        <RadioGroup
+            android:id="@+id/gender"
             android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             >
 
             <RadioButton
+                android:id="@+id/gender_male"
                 android:layout_height="wrap_content"
                 android:layout_width="100dp"
                 android:text="남자"
                 android:gravity="center"
                 />
             <RadioButton
+                android:id="@+id/gender_female"
                 android:layout_height="wrap_content"
                 android:layout_width="100dp"
                 android:text="여자"
                 android:gravity="center"
                 />
+        </RadioGroup>
 
-        </GridLayout>
         <Button
             android:id="@+id/joinmem"
             android:layout_width="wrap_content"

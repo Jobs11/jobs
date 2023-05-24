@@ -21,7 +21,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper
         // 앱이 설치후, 해당 클래스가 최초에 실행이 되면,
         // onCreate 함수가 최초 1회 호출.
         db.execSQL("create table " + TABLE_NAME +
-                "(ID TEXT PRIMARY KEY, PASSWORD TEXT, PASSWORD_CON TEXT, NAME TEXT, PHONE TEXT, ADDRESS TEXT, GENDER TEXT)")
+                "(ID TEXT PRIMARY KEY, PASSWORD TEXT NOT NULL, PASSWORD_CON TEXT NOT NULL, NAME TEXT, PHONE TEXT, ADDRESS TEXT, GENDER TEXT)")
     }
     // 이 클래스 사용하면, 지정된 데이터베이스 파일에, 테이블이 생성이 됩니다.
     // 생성된 물리 경로 주소.
@@ -38,7 +38,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper
     }
 
     // 데이터베이스 추가하기 insert
-    fun insertData(id: String?, password: String?, password_con: String?,name: String?, phone: String?, address: String?, gender: String?): Boolean {
+    fun insertData(id: String?, password: String?, password_con: String?, name: String?, phone: String?, address: String?, gender: String?): Boolean {
         // 디비 사용시 쓰기, 수정, 삭제 ->writableDatabase 사용함.
         val db = this.writableDatabase
         // execSQL -> 대신에 ContentValues() 를 이용하면
@@ -63,6 +63,12 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper
             return db.rawQuery("select * from $TABLE_NAME", null)
         }
 
+    fun idData(id: String, password: String): Cursor{
+        val db = this.writableDatabase
+        return db.query(TABLE_NAME, arrayOf<String>("*"),"id=? AND password=?",
+            arrayOf("id","password"),null,null,null)
+    }
+
     // 데이터베이스 삭제하기
     fun deleteData(id: String): Int {
         val db = this.writableDatabase
@@ -70,7 +76,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper
     }
 
     //데이터베이스 수정하기
-    fun updateData(id: String?, password: String?, password_con: String?,name: String?, phone: String?, address: String?, gender: String?): Boolean {
+    fun updateData(id: String?, password: String?, password_con: String?, name: String?, phone: String?, address: String?, gender: String?): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COL_1, id)

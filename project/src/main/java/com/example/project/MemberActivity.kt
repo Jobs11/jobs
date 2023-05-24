@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -19,10 +23,44 @@ class MemberActivity : AppCompatActivity() {
     lateinit var binding: ActivityMemberBinding
     lateinit var filePath: String
 
+    var myDB: DatabaseHelper? = null
+
+    var id1: EditText? = null
+    var pw1: EditText? = null
+    var pw2: EditText? = null
+    var name1: EditText? = null
+    var phone1: EditText? = null
+    var address1: EditText? = null
+    var gender: RadioGroup? = null
+    var joinmem: Button? = null
+    var memhome: Button? = null
+    var chooseGen: String? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMemberBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        myDB = DatabaseHelper(this)
+
+        id1 = binding.id1
+        pw1 = binding.pw1
+        pw2 = binding.pw2
+        name1 = binding.name1
+        phone1 = binding.phone1
+        address1 = binding.address1
+        joinmem = binding.joinmem
+        memhome = binding.memhome
+
+        AddData()
+
+        binding.gender.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.gender_male -> chooseGen = "남자"
+                R.id.gender_female -> chooseGen = "여자"
+            }
+        }
 
         binding.memhome.setOnClickListener {
             val intent = Intent(this@MemberActivity, MainActivity::class.java)
@@ -122,6 +160,7 @@ class MemberActivity : AppCompatActivity() {
             requestCameraFileLauncher.launch(intent)
 
         }
+
     }
     private fun calculateInSampleSize(fileUri: Uri, reqWidth: Int, reqHeight: Int): Int {
         //options , BitmapFactory 사진을 처리하는 업무, 그런데, Options 가 들어가면
@@ -163,5 +202,26 @@ class MemberActivity : AppCompatActivity() {
             }
         }
         return inSampleSize
+    }
+
+    fun AddData() {
+        joinmem!!.setOnClickListener {
+            val isInserted = myDB!!.insertData(
+                id1!!.text.toString(),
+                pw1!!.text.toString(),
+                pw2!!.text.toString(),
+                name1!!.text.toString(),
+                phone1!!.text.toString(),
+                address1!!.text.toString(),
+                chooseGen!!.toString()
+            )
+            if (isInserted == true) {
+                Toast.makeText(this@MemberActivity, "데이터추가 성공", Toast.LENGTH_LONG)
+                    .show()
+                val intent = Intent(this@MemberActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            else Toast.makeText(this@MemberActivity, "데이터추가 실패", Toast.LENGTH_LONG).show()
+        }
     }
 }
